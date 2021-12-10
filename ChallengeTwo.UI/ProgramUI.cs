@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChallengeTwo.Lib;
 
 namespace ChallengeTwo.UI
 {
     class ProgramUI
     {
-         
+        private readonly ClaimRepo _claimRepo = new ClaimRepo();
         public void Run()
         {
             //SeedData?
@@ -29,6 +30,7 @@ namespace ChallengeTwo.UI
                     case 1:
                         break;
                     case 2:
+                        DisplayAllClaims();
                         break;
                     case 3:
                         break;
@@ -57,7 +59,14 @@ namespace ChallengeTwo.UI
 
         public void DisplayAllClaims()
         {
+            Queue<Claim> claimsToDisplay = _claimRepo.GetAllClaims();
 
+            foreach(Claim c in claimsToDisplay)
+            {
+                Console.WriteLine($"ClaimID: {c.ClaimID }");
+            }
+            Console.WriteLine("Please press any key to return to the main menu.");
+            Console.ReadLine();
         }
     }
 }

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace ChallengeTwo.Lib
 {
-    class ClaimRepo
+    public class ClaimRepo
     {
 
         // manage the local "claims" objects and have their CRUD operations / helper methods in this class.
-        private readonly List<Claim> _claimRepo = new List<Claim>();
+        private readonly Queue<Claim> _claimRepo = new Queue<Claim>();
 
         //Create
-        public bool CreateClaim(Claim c)
+        public bool CreateClaim(Claim claimToCreate)
         {
-            if (c != null)
+            if (claimToCreate != null)
             {
                 int repoLengthBeforeAdd = _claimRepo.Count;
-                _claimRepo.Add(c);
+                _claimRepo.Enqueue(claimToCreate);
                 int repoLengthAfterAdd = _claimRepo.Count;
                 if(repoLengthBeforeAdd == repoLengthAfterAdd - 1)
                 {
@@ -33,6 +33,11 @@ namespace ChallengeTwo.Lib
             {
                 return false ;
             }
+        }
+
+        public Queue<Claim> GetAllClaims()
+        {
+            return _claimRepo;
         }
 
         //Read (out) single/multiple claims.
