@@ -72,8 +72,14 @@ namespace ChallengeTwo.Lib
         //return true if the claim date is less than 30 days after the incident date. 
         public bool IsClaimValid(DateTime incidentDate, DateTime claimDate)
         {
-            
-            return true;
+            if (claimDate > incidentDate.AddDays(30))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public void SeedData()
