@@ -38,7 +38,6 @@ namespace ChallengeTwo.UI
                         EnterClaim();
                         break;
                     case 4:
-
                         runApplication = false;
                         break;
                     default:
@@ -64,10 +63,10 @@ namespace ChallengeTwo.UI
         {
             Console.Clear();
             Queue<Claim> claimsToDisplay = _claimRepo.GetAllClaims();
-
+            Console.WriteLine("ClaimID \t Type \t Description \t Amount \t Date of Incident \t Date Of Claim \t Is Valid");
             foreach(Claim c in claimsToDisplay)
             {
-                Console.WriteLine($"ClaimID: {c.ClaimID }");
+                Console.WriteLine($"{c.ClaimID } \t \t {c.TypeOfClaim} \t {c.Description} \t {c.ClaimAmount} \t {c.DateOfIncident.ToString("MM/dd/yyyy")} \t \t {c.DateOfClaim.ToString("MM/dd/yyyy")} \t {c.ClaimIsValid} ");
             }
             Console.WriteLine("Please press any key to return to the main menu.");
             Console.ReadLine();
@@ -112,11 +111,12 @@ namespace ChallengeTwo.UI
             Console.WriteLine("Amount Claimed:");
             decimal amountOfClaim = Decimal.Parse(Console.ReadLine());
             Console.WriteLine("Date of Incident: (mm/dd/yyyy)");
-            Console.ReadLine();
-            DateTime dateOfIncident = DateTime.Now;
-            Console.WriteLine("Date of Claim:");
-            Console.ReadLine();
-            DateTime dateOfClaim = DateTime.Now;
+            string dateOfIncidentString = Console.ReadLine();
+
+            DateTime dateOfIncident = ReturnDate(dateOfIncidentString);
+            Console.WriteLine("Date of Claim: (mm/dd/yyyy");
+            string dateOfClaimString = Console.ReadLine();
+            DateTime dateOfClaim = ReturnDate(dateOfClaimString);
             bool isValid = _claimRepo.IsClaimValid(dateOfIncident, dateOfClaim);
             //check to see if the claim should be valid based on the dates and set the status appropriately when creating the claim.
             Claim claimToAdd = new Claim(idOfClaim, typeOfClaim, descriptionOfClaim, amountOfClaim, dateOfIncident, dateOfClaim, isValid);
@@ -130,6 +130,15 @@ namespace ChallengeTwo.UI
                 Console.WriteLine("Error. The claim was not added successfully. Please press any key to return to the menu.");
                 Console.ReadLine();
             }
+        }
+
+        public DateTime ReturnDate(string stringDate)
+        {
+            int year = Int32.Parse(stringDate.Substring(6,4));
+            int month = Int32.Parse(stringDate.Substring(0,2));
+            int day = Int32.Parse(stringDate.Substring(3,2));
+
+            return new DateTime(year, month, day);
         }
     }
 }

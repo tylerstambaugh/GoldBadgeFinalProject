@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChallengeThree.Lib
 {
-    public class Class1
+    // class to handle the badge object, defines it's properties and constructors.
+    public class BadgePOCO
     {
     }
 }
