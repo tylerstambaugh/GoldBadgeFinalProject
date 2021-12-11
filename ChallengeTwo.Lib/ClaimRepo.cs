@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChallengeTwo.Lib
 {
+    // manage the local "claims" objects and have their CRUD operations / helper methods in this class.
     public class ClaimRepo
     {
 
-        // manage the local "claims" objects and have their CRUD operations / helper methods in this class.
+        //local queue of claim obejcts to work with
         private readonly Queue<Claim> _claimRepo = new Queue<Claim>();
 
-        //Create
+        //create (add) a claim to the queue
         public bool CreateClaim(Claim claimToCreate)
         {
             if (claimToCreate != null)
@@ -82,6 +83,17 @@ namespace ChallengeTwo.Lib
             }
         }
 
+        //returns a DateTime from a string in the proper mm/dd/yyyy format
+        public DateTime ReturnDate(string stringDate)
+        {
+            int year = Int32.Parse(stringDate.Substring(6, 4));
+            int month = Int32.Parse(stringDate.Substring(0, 2));
+            int day = Int32.Parse(stringDate.Substring(3, 2));
+
+            return new DateTime(year, month, day);
+        }
+
+        //adds a couple of claims for testing when running the application
         public void SeedData()
         {
             Claim claimOne = new Claim(1, (Claim.ClaimType)1, "TestClaim 1", 4250.00m, new DateTime(2021, 01, 15), new DateTime(2021, 12, 07), true);
