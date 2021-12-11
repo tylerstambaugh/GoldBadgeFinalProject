@@ -25,5 +25,14 @@ namespace ChallengeThree.Lib
             }
             return false;
         }
+
+        public Dictionary<int, List<string>> GetAllBadges()
+        {
+            return _badgeRepo;
+        }
+        public Badge UpdateABadge(Badge b)
+        {
+            return b;
+        }
     }
 }

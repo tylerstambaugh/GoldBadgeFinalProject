@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeThree.UI", "Challe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeThree.Lib", "ChallengeThree.Lib\ChallengeThree.Lib.csproj", "{33CC64E6-1218-48C5-B6EF-AA6453788F55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challengeThree.Tests", "challengeThree.Tests\challengeThree.Tests.csproj", "{82F68036-E41D-4279-B046-9C6E9033C4BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeThree.Tests", "challengeThree.Tests\ChallengeThree.Tests.csproj", "{82F68036-E41D-4279-B046-9C6E9033C4BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

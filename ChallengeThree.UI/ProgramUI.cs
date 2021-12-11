@@ -9,7 +9,7 @@ namespace ChallengeThree.UI
 {
     class ProgramUI
     {
-        private readonly BadgeRepo _badgeRepo = new Lib.BadgeRepo();
+        private readonly BadgeRepo _badgeRepo = new BadgeRepo();
         public void Run()
         {
             //Seed Data
@@ -17,7 +17,7 @@ namespace ChallengeThree.UI
         }
 
         //console interation with user:
-        public void RunApplication()
+        private void RunApplication()
         {
             bool runApplication = true;
             while(runApplication)
@@ -50,7 +50,7 @@ namespace ChallengeThree.UI
         }
 
         //Just prints the menu, nothing else
-        public void Menu()
+        private static void Menu()
         {
             Console.WriteLine("Komodo Insuarnce Badge Management System \n" +
                 "Please select a function: \n" +
@@ -102,6 +102,15 @@ namespace ChallengeThree.UI
         private void DisplayAllBadges()
         {
             Console.Clear();
+            Dictionary<int, List<string>> badges = _badgeRepo.GetAllBadges();
+            Console.WriteLine(String.Format("|{0, -25}|{1, -25}|", "Badge#", "Door Access"));
+            PrintLine();
+            foreach (var v in badges)
+            {
+                
+                Console.Write($"Badge Number: {v.Key } \t"); 
+
+            }
             throw new NotImplementedException();
         }
 
@@ -113,6 +122,11 @@ namespace ChallengeThree.UI
         private void UpdateDoorsOnBadge()
         {
             throw new NotImplementedException();
+        }
+
+        public static void PrintLine()
+        {
+            Console.WriteLine(new string('_', Console.WindowWidth));
         }
 
      
