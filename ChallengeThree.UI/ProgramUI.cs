@@ -52,6 +52,7 @@ namespace ChallengeThree.UI
         //Just prints the menu, nothing else
         private static void Menu()
         {
+            Console.Clear();
             Console.WriteLine("Komodo Insuarnce Badge Management System \n" +
                 "Please select a function: \n" +
                 "1. Create a Badge \n" +
@@ -96,7 +97,7 @@ namespace ChallengeThree.UI
                 Console.ReadKey();
             }
             
-            throw new NotImplementedException();
+           
         }
 
         private void DisplayAllBadges()
@@ -107,11 +108,18 @@ namespace ChallengeThree.UI
             PrintLine();
             foreach (var v in badges)
             {
-                
-                Console.Write($"Badge Number: {v.Key } \t"); 
+                string stringOfDoors = "";
+                List<string> listOfDoors = v.Value;
+                foreach(string s in listOfDoors)
+                {
+                    stringOfDoors += s + ", ";
+                }
+                Console.WriteLine(String.Format("|{0, -25}|{1, -25}|", $" {v.Key }", $"{stringOfDoors}"));
 
             }
-            throw new NotImplementedException();
+            Console.WriteLine("Press and key to return.");
+            Console.ReadKey();
+            
         }
 
         private void DeleteAllDoorsOnBadge()

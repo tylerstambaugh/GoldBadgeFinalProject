@@ -92,7 +92,7 @@ namespace ChallengeTwo.Tests
         }
 
         [TestMethod]
-        public void ReturnDate_HelperMethod_IsNotNull()
+        public void ReturnDate_HelperMethod_IsOfTypeDate()
         {
             //Arrange
             string dateAsString = "01/01/2021";
