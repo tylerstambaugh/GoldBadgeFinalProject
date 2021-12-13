@@ -11,9 +11,8 @@ namespace ChallengeThree.Lib
     {
         public int BadgeId { get; set; }
         public List<string> Doors { get; set; }
-
         //Defined in the assignment but no usage given.
-        //public string BadgeName { get; set; }
+        public string BadgeName { get; set; }
 
         public Badge() { }
 

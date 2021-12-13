@@ -27,25 +27,32 @@ namespace ChallengeTwo.UI
                 Console.Clear();
                 Console.WriteLine("Kommodo Insurance Claims Application.");
                 Menu();
-                int userInput = Int16.Parse(Console.ReadLine());
-
-                switch(userInput)
+                int userInput;
+                if (!Int32.TryParse(Console.ReadLine(), out userInput))
                 {
-                    case 1:
-                        DisplayAllClaims();
-                        break;
-                    case 2:
-                        HandleClaim();
-                        break;
-                    case 3:
-                        EnterClaim();
-                        break;
-                    case 4:
-                        runApplication = false;
-                        break;
-                    default:
-                        Console.WriteLine("I'm not sure what you mean. Please try again.");
-                        break;
+                    Console.WriteLine("Please make a valid selection. Press any key to continue.");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    switch (userInput)
+                    {
+                        case 1:
+                            DisplayAllClaims();
+                            break;
+                        case 2:
+                            HandleClaim();
+                            break;
+                        case 3:
+                            EnterClaim();
+                            break;
+                        case 4:
+                            runApplication = false;
+                            break;
+                        default:
+                            Console.WriteLine("I'm not sure what you mean. Please try again.");
+                            break;
+                    }
                 }
 
             }
@@ -68,12 +75,15 @@ namespace ChallengeTwo.UI
         {
             Console.Clear();
             Queue<Claim> claimsToDisplay = _claimRepo.GetAllClaims();
-            Console.WriteLine("ClaimID \t Type \t Description \t Amount \t Date of Incident \t Date Of Claim \t Is Valid");
+            //Console.WriteLine(String.Format("|{0, -15}|{1, -15}|", "Badge#", "Door Access"));
+            Console.WriteLine(String.Format("|{0, -7}|{1, -10}|{2, -20}|{3, -10}|{4, -17}|{5, -17}|{6, -7}|","ClaimID", "Type", "Description", "Amount", "Date of Incident", "Date Of Claim", "Is Valid"));
+            PrintHorizontalLine();
+
             if (claimsToDisplay.Count > 0)
             {
                 foreach (Claim c in claimsToDisplay)
                 {
-                    Console.WriteLine($"{c.ClaimID } \t \t {c.TypeOfClaim} \t {c.Description} \t {c.ClaimAmount} \t {c.DateOfIncident.ToString("MM/dd/yyyy")} \t \t {c.DateOfClaim.ToString("MM/dd/yyyy")} \t {c.ClaimIsValid} ");
+                    Console.WriteLine(String.Format("|{0, -7}|{1, -10}|{2, -20}|{3, -10}|{4, -17}|{5, -17}|{6, -7}|",$"{c.ClaimID }", $"{c.TypeOfClaim}", $"{c.Description}", $"{c.ClaimAmount}", $"{c.DateOfIncident.ToString("MM/dd/yyyy")}", $"{c.DateOfClaim.ToString("MM/dd/yyyy")}", $"{c.ClaimIsValid}"));
                 }
             }
             else
@@ -81,7 +91,7 @@ namespace ChallengeTwo.UI
                 Console.WriteLine("There are no claims to display.");
             }
             Console.WriteLine("Please press any key to return to the main menu.");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         //display next claim in queue and allow user to dequeue it
@@ -104,19 +114,19 @@ namespace ChallengeTwo.UI
                     if (_claimRepo.HandleClaim())
                     {
                         Console.WriteLine("The claim was handled. Please press any key to return to the menu.");
-                        Console.ReadLine();
+                        Console.ReadKey();
                     }
                     else
                     {
                         Console.WriteLine("Something went wrong attempting to dequeue the claim. Fix your code then try again.");
-                        Console.ReadLine();
+                        Console.ReadKey();
                     }
                 }
             }
             else
             {
                 Console.WriteLine("There are no claims to handle at the moment. Press any key to return.");
-                Console.ReadLine();
+                Console.ReadKey();
             }
         }
 
@@ -147,13 +157,19 @@ namespace ChallengeTwo.UI
             if (_claimRepo.CreateClaim(claimToAdd) == true)
             {
                 Console.WriteLine("Wow. That actually worked. Please press any key to return to the menu.");
-                Console.ReadLine();
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("Error. The claim was not added successfully. Probably something to do with the dates, there isn't really any error handling around those.  Please press any key to return to the menu.");
-                Console.ReadLine();
+                Console.ReadKey();
             }
+        }
+
+        //helper method to draw a horizontal line the width of the console.
+        public void PrintHorizontalLine()
+        {
+            Console.WriteLine(new string('_', Console.WindowWidth));
         }
     }
 }
