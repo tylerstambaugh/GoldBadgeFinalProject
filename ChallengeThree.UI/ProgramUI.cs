@@ -119,18 +119,11 @@ namespace ChallengeThree.UI
             PrintLine();
             foreach (var v in badges)
             {
-                string stringOfDoors = "";
-                List<string> listOfDoors = v.Value;
-                foreach(string s in listOfDoors)
-                {
-                    stringOfDoors += s + ", ";
-                }
+                string stringOfDoors = GetStringOfDoors(v.Key);
                 Console.WriteLine(String.Format("|{0, -15}|{1, -15}|", $" {v.Key }", $"{stringOfDoors}"));
-
             }
             Console.WriteLine("Press and key to return.");
             Console.ReadKey();
-            
         }
 
         private void DeleteAllDoorsOnBadge()
@@ -160,18 +153,20 @@ namespace ChallengeThree.UI
                 int userSelection;
                 if (!Int32.TryParse(Console.ReadLine(), out userSelection))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    Console.WriteLine("Please enter a valid number. Press any key to try again.");
                     Console.ReadKey();
                 }
                 else if (!badges.ContainsKey(userSelection))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    Console.WriteLine("Please enter a valid number. Press any key to try again.");
                     Console.ReadKey();
                 }
                 else
                 {
+                    Console.WriteLine();
                     string stringOfDoors = GetStringOfDoors(userSelection);
                     Console.WriteLine($"BadgeID: {userSelection} has access to {stringOfDoors}");
+                    Console.WriteLine();
                     Console.WriteLine("What would you like to do?\n" +
                         "1. Remove A Door \n" +
                         "2. Add A Door \n" +
@@ -179,21 +174,21 @@ namespace ChallengeThree.UI
                     int badgeUpdateOption;
                     if(!Int32.TryParse(Console.ReadLine(), out badgeUpdateOption))
                     {
-                        Console.WriteLine("Please enter a valid number.");
+                        Console.WriteLine("Please enter a valid number. Press any key to try again.");
                         Console.ReadKey();
                     }
                     else if(badgeUpdateOption != 1 && badgeUpdateOption != 2 && badgeUpdateOption != 3)
                     {
-                        Console.WriteLine("Please enter a valid selection.");
+                        Console.WriteLine("Please enter a valid selection. Press any key to try again.");
                         Console.ReadKey();
                     }
                     else if (badgeUpdateOption == 1)
                     {
-                        //call some other update method, this is getting really long.
+                        RemoveDoorFromBadge(userSelection);
                     }
                     else if (badgeUpdateOption == 2)
                     {
-                        // call some other method, this is getting really long too.
+                        AddDoorToBadge(userSelection);
                     }
                     else if (badgeUpdateOption == 3)
                     {
@@ -212,12 +207,43 @@ namespace ChallengeThree.UI
 
         // method to remove door from badge, broken out from UpdateBadge method above
 
-        public void RemoveDoorFromBadge()
+        private void RemoveDoorFromBadge(int badgeNumber)
         {
-
+            Console.WriteLine("Which door would you like to remove?");
+            string doorToRemove = Console.ReadLine();
+            if (_badgeRepo.RemoveDoorFromBadge(badgeNumber, doorToRemove))
+            {
+                Console.WriteLine($"Door removed successfully.\n" +
+                    $"Badge ID {badgeNumber} has access to {GetStringOfDoors(badgeNumber)}\n" +
+                    "Press any key to retrun.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Something went not right.");
+                Console.ReadKey();
+            }
         }
 
-        public string GetStringOfDoors(int badgeNumber)
+        private void AddDoorToBadge(int badgeNumber)
+        {
+            Console.WriteLine("Which door would you like to add?");
+            string doorToRemove = Console.ReadLine();
+            if (_badgeRepo.AddDoorToBadge(badgeNumber, doorToRemove))
+            {
+                Console.WriteLine($"Door added successfully.\n" +
+                    $"Badge ID {badgeNumber} has access to {GetStringOfDoors(badgeNumber)}\n" +
+                    "Press any key to retrun.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Something went not right.");
+                Console.ReadKey();
+            }
+        }
+
+        private string GetStringOfDoors(int badgeNumber)
         {
             string stringOfDoors = "";
             Dictionary<int, List<string>> badges = _badgeRepo.GetAllBadges();

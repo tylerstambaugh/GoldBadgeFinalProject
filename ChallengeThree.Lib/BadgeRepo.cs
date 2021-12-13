@@ -30,12 +30,12 @@ namespace ChallengeThree.Lib
         {
             return _badgeRepo;
         }
-        public bool RemoveDoorFromBadge(Badge b, string doorToRemove)
+        public bool RemoveDoorFromBadge(int badgeNumber, string doorToRemove)
         {
-            if (b != null && doorToRemove != null)
+            if (doorToRemove != null)
             {
                 List<string> newListOfDoors = new List<string>();
-                List<string> listOfOriginalDoors = b.Doors;
+                List<string> listOfOriginalDoors = _badgeRepo[badgeNumber];
 
                 foreach(string door in listOfOriginalDoors)
                 {
@@ -44,7 +44,7 @@ namespace ChallengeThree.Lib
                         newListOfDoors.Add(door);
                     }
                 }
-                _badgeRepo[b.BadgeId] = newListOfDoors;
+                _badgeRepo[badgeNumber] = newListOfDoors;
                 return true;
             }
             else
@@ -53,13 +53,13 @@ namespace ChallengeThree.Lib
             }
         }
 
-        public bool AddDoorToBadge(Badge b, string doorToAdd)
+        public bool AddDoorToBadge(int badgeNumber, string doorToAdd)
         {
-            if (b != null && doorToAdd != null)
+            if (doorToAdd != null)
             {
-                List<string> listOfDoors = b.Doors;
+                List<string> listOfDoors = _badgeRepo[badgeNumber];
                 listOfDoors.Add(doorToAdd);
-                _badgeRepo[b.BadgeId] = listOfDoors;
+                _badgeRepo[badgeNumber] = listOfDoors;
 
                 return true;
             }
