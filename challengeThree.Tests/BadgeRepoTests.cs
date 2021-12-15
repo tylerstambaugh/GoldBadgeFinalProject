@@ -15,10 +15,10 @@ namespace ChallengeThree.Tests
         {
             //arrange
             List<string> listOfDoors = new List<string>() { "e3", "r4", "t5" };
-            Badge testBadge = new Badge(1, listOfDoors);
+            Badge testBadge3 = new Badge(3, listOfDoors);
 
             //act
-            bool wasAdded = _badgeRepo.CreateBadge(testBadge);
+            bool wasAdded = _badgeRepo.CreateBadge(testBadge3);
 
             //assert
             Assert.IsTrue(wasAdded);
