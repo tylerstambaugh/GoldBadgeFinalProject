@@ -8,6 +8,14 @@ namespace ChallengeFour.Lib
 {
     public class Outing
     {
+
+                            //        Here are the parts of an outing:
+                            //Event Type:   Golf, Bowling, Amusement Park, Concert
+                            //Number of people that attended
+                            //Date
+                            //Total cost per person for the event
+                            //Total cost for the event
+
         //POCO class, defines properties of 'outing' object and has it's constructors
         public enum EventType { Golf = 1, Bowling, Amusement_Park, Concert};
         public EventType TypeOfEvent { get; set; }
