@@ -160,17 +160,27 @@ namespace ChallengeThree.UI
             }
             else
             {
-                bool removedSuccessfully = _badgeRepo.DemoveAllDoorsFromBadge(badgeNumber);
-                if (removedSuccessfully)
+                Console.WriteLine($"Are you sure you want to remove all doors from Badge Number {badgeNumber}? (y/n) ");
+                string confirm = Console.ReadLine().ToLower();
+                if (confirm == "y")
                 {
-                    Console.WriteLine($"All doors removed successfully. \n" +
-                        $"Badge Number: {badgeNumber} has access to: {GetStringOfDoors(badgeNumber)} \n" +
-                        $"Press any key to return to the menu.");
-                    Console.ReadKey();
+                    bool removedSuccessfully = _badgeRepo.RemoveAllDoorsFromBadge(badgeNumber);
+                    if (removedSuccessfully)
+                    {
+                        Console.WriteLine($"All doors removed successfully. \n" +
+                            $"Badge Number: {badgeNumber} has access to: {GetStringOfDoors(badgeNumber)} \n" +
+                            $"Press any key to return to the menu.");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("There was a problem removing all doors from the badge. Please check your inputs and try again. Press any key to return to the menu.");
+                        Console.ReadKey();
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("There was a problem removing all doors from the badge. Please check your inputs and try again. Press any key to return to the menu.");
+                    Console.WriteLine("Glad we checked. Press any key to return.");
                     Console.ReadKey();
                 }
             }
@@ -300,7 +310,7 @@ namespace ChallengeThree.UI
         //helper method to return the list of doors from a badge as a signle string.
         private string GetStringOfDoors(int badgeNumber)
         {
-            string stringOfDoors = "";
+            string stringOfDoors = "" ;
             Dictionary<int, List<string>> badges = _badgeRepo.GetAllBadges();
             List<string> listOfDoors = badges[badgeNumber];
             if (listOfDoors.Count == 0)

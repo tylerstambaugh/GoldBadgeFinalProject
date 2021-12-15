@@ -67,7 +67,7 @@ namespace ChallengeThree.Lib
 
 
         //returns true if the local repo has the badge and sets the "value" of the dictionary item equal to an empty list of type string, else returns false.
-        public bool DemoveAllDoorsFromBadge(int badgeNumber)
+        public bool RemoveAllDoorsFromBadge(int badgeNumber)
         {
             if (_badgeRepo.ContainsKey(badgeNumber))
             {
@@ -93,6 +93,12 @@ namespace ChallengeThree.Lib
             {
                 return false;
             }
+        }
+
+        //helper method to get count of badges
+        public int CountOfBadges()
+        {
+            return _badgeRepo.Count;
         }
     }
 }
