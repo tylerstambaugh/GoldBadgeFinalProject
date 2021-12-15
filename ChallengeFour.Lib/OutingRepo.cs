@@ -40,5 +40,11 @@ namespace ChallengeFour.Lib
         {
             return _OutingRepo;
         }
+
+        public decimal CalculateCostOfAllOutings()
+        {
+            decimal costOfAlloutings = 0.00m;
+            return costOfAlloutings;
+        }
     }
 }

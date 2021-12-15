@@ -17,8 +17,8 @@ namespace ChallengeFour.Lib
                             //Total cost for the event
 
         //POCO class, defines properties of 'outing' object and has it's constructors
-        public enum EventType { Golf = 1, Bowling, Amusement_Park, Concert};
-        public EventType TypeOfEvent { get; set; }
+        public enum OutingType { Golf = 1, Bowling, Amusement_Park, Concert};
+        public OutingType TypeOfOuting { get; set; }
         public int HeadCount { get; set; }
         public DateTime EventDate { get; set; }
 
@@ -27,9 +27,9 @@ namespace ChallengeFour.Lib
 
         public Outing() { }
 
-        public Outing(EventType typeOfEvent, int numberOfPeople, DateTime eventDate, decimal costPerPerson, decimal costForEvent)
+        public Outing(OutingType typeOfOuting, int numberOfPeople, DateTime eventDate, decimal costPerPerson, decimal costForEvent)
         {
-            TypeOfEvent = typeOfEvent;
+            TypeOfOuting = typeOfOuting;
             HeadCount = numberOfPeople;
             EventDate = eventDate;
             CostPerPerson = costPerPerson;
