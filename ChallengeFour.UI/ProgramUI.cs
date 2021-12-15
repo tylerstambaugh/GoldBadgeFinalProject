@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace ChallengeFour.UI
 {
-    class ProgramUI
+    public class ProgramUI
     {
+        public void Run()
+        {
+            RunApplication();
+        }
+
+        public void RunApplication()
+        {
+            Console.WriteLine("Challenge 4: Company Outings \n");
+
+            Console.ReadLine();
+        }
+
+        //just prints the menu, nothing else.
+        public void DisplayMenu()
+        {
+
+        }
     }
 }

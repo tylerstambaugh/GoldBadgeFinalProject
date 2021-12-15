@@ -4,7 +4,7 @@ using System;
 namespace ChallengeFour.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class OutingRepoTests
     {
         [TestMethod]
         public void TestMethod1()
