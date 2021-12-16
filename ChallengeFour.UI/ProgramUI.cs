@@ -130,7 +130,7 @@ namespace ChallengeFour.UI
             }
         }
 
-        
+        //gets the list of outings from the repo and iterates through them printing out their details.
         private void DisplayAllOutings()
         {
             List<Outing> listOfOutings = _outingRepo.GetAllOutings();
@@ -142,6 +142,7 @@ namespace ChallengeFour.UI
             else
             {
                 Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
+                printLine();
                 foreach (Outing outing in listOfOutings)
                 {
                     Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", $"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate.ToString(string.Format("MM/dd/yyyy"))}", $"${outing.CostPerPerson}", $"${outing.OutingTotalCost}"));
@@ -151,6 +152,7 @@ namespace ChallengeFour.UI
             }
         }
 
+        //outing reporting menu and user selection
         private void OutingReporting()
         {
             bool keepDoing = true;
@@ -185,21 +187,25 @@ namespace ChallengeFour.UI
                 {
                     Console.WriteLine("I'm not sure what happened. You shouldn't have gotten here. Press any key to try again.");
                     Console.ReadKey();
-
                 }
             }
         }
 
 
+        //method broken out from the cost reporting menu above.
         private void GetCostOfAllOutings()
         {
+            printLine();
+            Console.WriteLine();
             Console.WriteLine($"The cost of all outings is ${_outingRepo.CalculateCostOfAllOutings()}. \n" +
                 $"Press any key to return.");
             Console.ReadKey();
         }
 
+        //method broken out from the cost reporting menu above.
         private void GetCostOfOutingsOfType()
         {
+            printLine();
             Console.WriteLine();
             Console.WriteLine("For which outing type would you like to know the total cost of all outings of that type? \n" +
                 "1. Golf \n" +
@@ -230,6 +236,11 @@ namespace ChallengeFour.UI
                 "99. Exit");
         }
 
-       
+
+        //just prints a line for helping break out info on the display.
+        public void printLine()
+        {
+            Console.WriteLine(new string('_', Console.WindowWidth));
+        }
     }
 }
