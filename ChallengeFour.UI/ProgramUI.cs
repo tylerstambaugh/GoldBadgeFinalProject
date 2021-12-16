@@ -27,12 +27,7 @@ namespace ChallengeFour.UI
                 Console.Clear();
                 DisplayMenu();
                 int userSelection;
-                if(!Int32.TryParse(Console.ReadLine(), out userSelection))
-                {
-                    Console.WriteLine("Please enter a valid number. Press any key to return.");
-                    Console.ReadKey();
-                }
-                else if (userSelection != 1 && userSelection != 2 && userSelection != 3 && userSelection != 4)
+                if((!Int32.TryParse(Console.ReadLine(), out userSelection)) || (userSelection != 1 && userSelection != 2 && userSelection != 3 && userSelection != 4))
                 {
                     Console.WriteLine("Please enter a valid number. Press any key to return.");
                     Console.ReadKey();
@@ -63,6 +58,7 @@ namespace ChallengeFour.UI
         //runs through collecting the data from the user to create an outing. Will return the user to the main menu if they do not enter valid inputs. 
         private void AddOuting()
         {
+            
             Console.Clear();
             Console.WriteLine("Create an outing: \n");
 
@@ -73,20 +69,14 @@ namespace ChallengeFour.UI
                 "3. Amusement Park \n" +
                 "4. Concert");
             int outingTypeInt;
-            if (!Int32.TryParse(Console.ReadLine(), out outingTypeInt))
+            if ((!Int32.TryParse(Console.ReadLine(), out outingTypeInt)) || (!(outingTypeInt <= 4) || !(outingTypeInt >= 1)))
             {
                 Console.WriteLine("Please enter a valid number. Press any key to try again.");
                 Console.ReadKey();
                 return;
             }
-            else if (!(outingTypeInt <= 4) || !(outingTypeInt >= 1))
-            {
-                Console.WriteLine("Please enter a valid number. Press any key to try again.");
-                Console.ReadKey();
-                return;
-            }
-
-            OutingType typeOfOuting = (OutingType)outingTypeInt; 
+                
+            OutingType typeOfOuting = (OutingType)outingTypeInt;
             //collect number of people that attended the outing
             Console.WriteLine("How many folks attended the outing?");
             int numPeople;
@@ -99,7 +89,7 @@ namespace ChallengeFour.UI
             //collect the date of the outing
             Console.WriteLine("What was/is the date of the outing? (mm/dd/yyyy)");
             string dateAsString = Console.ReadLine();
-            if(!DateTime.TryParseExact(dateAsString, "MM/dd/yyyy", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dateOfOuting))
+            if (!DateTime.TryParseExact(dateAsString, "MM/dd/yyyy", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dateOfOuting))
             {
                 Console.WriteLine("Please enter a valid mm/dd/yyyy date. Press any key to try again.");
                 Console.ReadKey();
@@ -108,15 +98,16 @@ namespace ChallengeFour.UI
             //collect cost per person
             Console.WriteLine("What was the cost per person? xxxx.xx");
             //decimal costPerPerson;
-            if(!Decimal.TryParse(Console.ReadLine(), out decimal costPerPerson))
+            if (!Decimal.TryParse(Console.ReadLine(), out decimal costPerPerson))
             {
                 Console.WriteLine("Please enter a valid number. Press any key to try again.");
                 Console.ReadKey();
                 return;
             }
             // collect total cost for event
+            //Collecting these separately instead of calculating (number of people * cost per person) based on real world experience. A team outing may include a fixed cost and then a price per person in addition. It was considered, that is my point I suppose.
             Console.WriteLine("What was the total cost of the outing? xxxx.xx");
-           // decimal costOfOuting;
+            // decimal costOfOuting;
             if (!Decimal.TryParse(Console.ReadLine(), out decimal costOfOuting))
             {
                 Console.WriteLine("Please enter a valid number. Press any key to try again.");
@@ -129,11 +120,13 @@ namespace ChallengeFour.UI
             {
                 Console.WriteLine("Outing created with successs. Press any key to return to the menu.");
                 Console.ReadKey();
+                return;
             }
             else
             {
-                Console.WriteLine("The outing was not added. Please check your inputs and try again.");
+                Console.WriteLine("The outing was not added. Please check your inputs and try again.");                   
                 Console.ReadKey();
+                return;
             }
         }
 
@@ -141,19 +134,91 @@ namespace ChallengeFour.UI
         private void DisplayAllOutings()
         {
             List<Outing> listOfOutings = _outingRepo.GetAllOutings();
-            Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
-            foreach (Outing outing in listOfOutings)
+            if (listOfOutings.Count == 0)
             {
-                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}",$"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate.ToString(string.Format("MM/dd/yyyy"))}", $"${outing.CostPerPerson}", $"${outing.OutingTotalCost}"));
+                Console.WriteLine("There are no outings to display. Press any key to return.");
+                Console.ReadKey();
             }
-            Console.WriteLine("Press any key to return.");
-            Console.ReadKey();
+            else
+            {
+                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
+                foreach (Outing outing in listOfOutings)
+                {
+                    Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", $"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate.ToString(string.Format("MM/dd/yyyy"))}", $"${outing.CostPerPerson}", $"${outing.OutingTotalCost}"));
+                }
+                Console.WriteLine("Press any key to return.");
+                Console.ReadKey();
+            }
         }
 
         private void OutingReporting()
         {
-            throw new NotImplementedException();
+            bool keepDoing = true;
+            while (keepDoing)
+            {
+                Console.Clear();
+                Console.WriteLine("Outing Reporting Subsystem - Menu Giedi Prime\n" +
+                    "Please select an option:\n" +
+                    "1. Get Cost of All Outings \n" +
+                    "2. Get Cost of All Outings of a Type \n" +
+                    "3. Return to main menu");
+
+                if((!Int32.TryParse(Console.ReadLine(), out int userSelection)) || (userSelection != 1 && userSelection != 2 && userSelection != 3))
+                {
+                    Console.WriteLine("Please enter a valid selection. Press any key to return.");
+                    Console.ReadKey();
+                    
+                }
+                else if (userSelection == 1)
+                {
+                    GetCostOfAllOutings();
+                }
+                else if (userSelection == 2)
+                {
+                    GetCostOfOutingsOfType();
+                }
+                else if (userSelection == 3)
+                {
+                    keepDoing = false;
+                }
+                else
+                {
+                    Console.WriteLine("I'm not sure what happened. You shouldn't have gotten here. Press any key to try again.");
+                    Console.ReadKey();
+
+                }
+            }
         }
+
+
+        private void GetCostOfAllOutings()
+        {
+            Console.WriteLine($"The cost of all outings is ${_outingRepo.CalculateCostOfAllOutings()}. \n" +
+                $"Press any key to return.");
+            Console.ReadKey();
+        }
+
+        private void GetCostOfOutingsOfType()
+        {
+            Console.WriteLine();
+            Console.WriteLine("For which outing type would you like to know the total cost of all outings of that type? \n" +
+                "1. Golf \n" +
+                "2. Bowling \n" +
+                "3. Amusement Park \n" +
+                "4. Concert");
+            int outingTypeInt;
+            if ((!Int32.TryParse(Console.ReadLine(), out outingTypeInt)) && ((outingTypeInt <= 4) && (outingTypeInt >= 1)))
+            {
+                Console.WriteLine("Please enter a valid number. Press any key to try again.");
+                Console.ReadKey();
+                return;
+            }
+            OutingType typeOfOuting = (OutingType)outingTypeInt;
+            Console.WriteLine($"The total cost for all {typeOfOuting} outings is {_outingRepo.CalculateCostOfAllOutingsOfType(typeOfOuting)} \n" +
+                $"Press any key to return.");
+            Console.ReadKey();
+        }
+
 
         //just prints the menu, nothing else.
         public void DisplayMenu()
