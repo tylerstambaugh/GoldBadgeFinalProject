@@ -16,6 +16,7 @@ namespace ChallengeFour.UI
             RunApplication();
         }
 
+        //displays the main menu and runs the method associated with the users selection.
         public void RunApplication()
         {
             Console.WriteLine("Challenge 4: Company Outings \n");
@@ -58,12 +59,13 @@ namespace ChallengeFour.UI
             }
         }
 
-
         //runs through collecting the data from the user to create an outing. Will return the user to the main menu if they do not enter valid inputs. 
         private void AddOuting()
         {
             Console.Clear();
             Console.WriteLine("Create an outing: \n");
+
+            //collect the outing type
             Console.WriteLine("What is the outing type? \n" +
                 "1. Golf \n" +
                 "2. Bowling \n" +
@@ -93,9 +95,11 @@ namespace ChallengeFour.UI
                 Console.ReadKey();
                 return;
             }
+            //collect the date of the outing
+            //DateTime thisDate1 = new DateTime(2011, 6, 10);
             Console.WriteLine("What was/is the date of the outing? (mm/dd/yyyy)");
             string dateAsString = Console.ReadLine();
-            DateTime dateOfOuting = new DateTime();
+            DateTime dateOfOuting = _outingRepo.ReturnDateFromString(dateAsString);
 
             //collect cost per person
             Console.WriteLine("What was the cost per person? xxxx.xx");
@@ -116,6 +120,7 @@ namespace ChallengeFour.UI
                 return;
             }
 
+            //create the outing object
             Outing outingToAdd = new Outing(typeOfOuting, numPeople, dateOfOuting, costPerPerson, costOfOuting);
             if (_outingRepo.CreateOuting(outingToAdd))
             {
@@ -133,11 +138,13 @@ namespace ChallengeFour.UI
         private void DisplayAllOutings()
         {
             List<Outing> listOfOutings = _outingRepo.GetAllOutings();
-            Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -15}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
+            Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
             foreach (Outing outing in listOfOutings)
             {
-                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -15}|{4, -15}", { outing.TypeOfOuting}, {outing.HeadCount}, { outing.OutingDate}, { outing.CostPerPerson}, {outing.EventTotalCost));
+                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -15}|{4, -15}",$"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate}", $"{outing.CostPerPerson}", $"{outing.OutingTotalCost}"));
             }
+            Console.WriteLine("Press any key to return.");
+            Console.ReadKey();
         }
 
         private void OutingReporting()

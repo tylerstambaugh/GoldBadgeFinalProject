@@ -20,20 +20,20 @@ namespace ChallengeFour.Lib
         public enum OutingType { Golf = 1, Bowling, Amusement_Park, Concert};
         public OutingType TypeOfOuting { get; set; }
         public int HeadCount { get; set; }
-        public DateTime EventDate { get; set; }
+        public DateTime OutingDate { get; set; }
 
         public decimal CostPerPerson { get; set; }
-        public decimal EventTotalCost { get; set; }
+        public decimal OutingTotalCost { get; set; }
 
         public Outing() { }
 
-        public Outing(OutingType typeOfOuting, int numberOfPeople, DateTime eventDate, decimal costPerPerson, decimal costForEvent)
+        public Outing(OutingType typeOfOuting, int numberOfPeople, DateTime outingDate, decimal costPerPerson, decimal costForOuting)
         {
             TypeOfOuting = typeOfOuting;
             HeadCount = numberOfPeople;
-            EventDate = eventDate;
+            OutingDate = outingDate;
             CostPerPerson = costPerPerson;
-            EventTotalCost = costForEvent;
+            OutingTotalCost = costForOuting;
         }
     }
 }
