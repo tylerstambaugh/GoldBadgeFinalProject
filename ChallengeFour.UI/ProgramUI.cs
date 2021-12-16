@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,15 +97,18 @@ namespace ChallengeFour.UI
                 return;
             }
             //collect the date of the outing
-            //DateTime thisDate1 = new DateTime(2011, 6, 10);
             Console.WriteLine("What was/is the date of the outing? (mm/dd/yyyy)");
             string dateAsString = Console.ReadLine();
-            DateTime dateOfOuting = _outingRepo.ReturnDateFromString(dateAsString);
-
+            if(!DateTime.TryParseExact(dateAsString, "MM/dd/yyyy", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dateOfOuting))
+            {
+                Console.WriteLine("Please enter a valid mm/dd/yyyy date. Press any key to try again.");
+                Console.ReadKey();
+                return;
+            }
             //collect cost per person
             Console.WriteLine("What was the cost per person? xxxx.xx");
-            decimal costPerPerson;
-            if(!Decimal.TryParse(Console.ReadLine(), out costPerPerson))
+            //decimal costPerPerson;
+            if(!Decimal.TryParse(Console.ReadLine(), out decimal costPerPerson))
             {
                 Console.WriteLine("Please enter a valid number. Press any key to try again.");
                 Console.ReadKey();
@@ -112,14 +116,13 @@ namespace ChallengeFour.UI
             }
             // collect total cost for event
             Console.WriteLine("What was the total cost of the outing? xxxx.xx");
-            decimal costOfOuting;
-            if (!Decimal.TryParse(Console.ReadLine(), out costOfOuting))
+           // decimal costOfOuting;
+            if (!Decimal.TryParse(Console.ReadLine(), out decimal costOfOuting))
             {
                 Console.WriteLine("Please enter a valid number. Press any key to try again.");
                 Console.ReadKey();
                 return;
             }
-
             //create the outing object
             Outing outingToAdd = new Outing(typeOfOuting, numPeople, dateOfOuting, costPerPerson, costOfOuting);
             if (_outingRepo.CreateOuting(outingToAdd))
@@ -141,7 +144,7 @@ namespace ChallengeFour.UI
             Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
             foreach (Outing outing in listOfOutings)
             {
-                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -15}|{4, -15}",$"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate}", $"{outing.CostPerPerson}", $"{outing.OutingTotalCost}"));
+                Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}",$"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate.ToString(string.Format("MM/dd/yyyy"))}", $"${outing.CostPerPerson}", $"${outing.OutingTotalCost}"));
             }
             Console.WriteLine("Press any key to return.");
             Console.ReadKey();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -136,21 +137,35 @@ namespace ChallengeTwo.UI
             
             //if time allows, add if else check to validate data.
             Console.WriteLine("Please enter the following fields.");
+            
             Console.WriteLine("Claim ID:");
             int idOfClaim = Int32.Parse(Console.ReadLine());
+           
             Console.WriteLine("Claim Type: (1 = Car, 2 = Home, 3 = Theft");
             Claim.ClaimType typeOfClaim = (Claim.ClaimType)Int32.Parse(Console.ReadLine());
+           
             Console.WriteLine("Description:");
             string descriptionOfClaim = Console.ReadLine();
+            
             Console.WriteLine("Amount Claimed:");
             decimal amountOfClaim = Decimal.Parse(Console.ReadLine());
+            
             Console.WriteLine("Date of Incident: (mm/dd/yyyy)");
             string dateOfIncidentString = Console.ReadLine();
-            DateTime dateOfIncident = _claimRepo.ReturnDate(dateOfIncidentString);
-            Console.WriteLine("Date of Claim: (mm/dd/yyyy");
+            if (!DateTime.TryParseExact(dateOfIncidentString, "MM/dd/yyyy", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dateOfIncident))
+            {
+                Console.WriteLine("Please enter a valid mm/dd/yyyy date. Press any key to try again.");
+                Console.ReadKey();
+                return;
+            }
+                Console.WriteLine("Date of Claim: (mm/dd/yyyy");
             string dateOfClaimString = Console.ReadLine();
-            DateTime dateOfClaim = _claimRepo.ReturnDate(dateOfClaimString);
-            //check to see if the claim should be valid based on the dates and set the status appropriately before creating the claim.
+            if (!DateTime.TryParseExact(dateOfClaimString, "MM/dd/yyyy", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dateOfClaim))
+            {
+                Console.WriteLine("Please enter a valid mm/dd/yyyy date. Press any key to try again.");
+                Console.ReadKey();
+                return;
+            }
             bool isValid = _claimRepo.IsClaimValid(dateOfIncident, dateOfClaim);
             
             Claim claimToAdd = new Claim(idOfClaim, typeOfClaim, descriptionOfClaim, amountOfClaim, dateOfIncident, dateOfClaim, isValid);
