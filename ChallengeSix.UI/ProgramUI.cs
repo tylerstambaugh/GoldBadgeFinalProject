@@ -8,5 +8,14 @@ namespace ChallengeSix.UI
 {
     class ProgramUI
     {
+        public void Run()
+        {
+            RunApplication();
+        }
+
+        public void RunApplication()
+        {
+
+        }
     }
 }

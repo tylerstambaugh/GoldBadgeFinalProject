@@ -83,7 +83,9 @@ namespace ChallengeFour.Lib
 
             return costOfAlloutingsOfType;
         }
+       
         //returns a DateTime from a string in the proper mm/dd/yyyy format
+        // no longer needed after figuring out DateTime.TryParseExact(). 
         public DateTime ReturnDateFromString(string stringDate)
         {
             int year = Int32.Parse(stringDate.Substring(6, 4));

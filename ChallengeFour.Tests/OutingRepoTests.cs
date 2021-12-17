@@ -45,5 +45,19 @@ namespace ChallengeFour.Tests
             //assert
             Assert.AreEqual(420.69m, costOfAllOutings);
         }
+
+        [TestMethod]
+        public void CalculateCostOfAllOutingsOfType_GeneralTest_AssertsAreEqual()
+        {
+            //arrange
+            Outing outingToAdd4 = new Outing(Outing.OutingType.Concert, 16, new DateTime(01 / 01 / 2021), 420.69m, 1345.00m);
+            _outingRepo.CreateOuting(outingToAdd4);
+            Outing outingToAdd5 = new Outing(Outing.OutingType.Concert, 16, new DateTime(01 / 01 / 2021), 420.69m, 2255.00m);
+            _outingRepo.CreateOuting(outingToAdd5);
+            //act
+            decimal costOfAllOutingsOfType = _outingRepo.CalculateCostOfAllOutingsOfType(Outing.OutingType.Concert);
+            //assert
+            Assert.AreEqual(3600.00m, costOfAllOutingsOfType);
+        }
     }
 }
