@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ChallengeFour.Lib;
+using System.Collections.Generic;
 
 namespace ChallengeFour.Tests
 {
@@ -8,11 +9,6 @@ namespace ChallengeFour.Tests
     public class OutingRepoTests
     {
         private readonly OutingRepo _outingRepo = new OutingRepo();
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
 
         [TestMethod]
         public void CreateOuting_GeneralTest_RetrunsTrue()
@@ -23,6 +19,31 @@ namespace ChallengeFour.Tests
             bool wasAdded = _outingRepo.CreateOuting(outingToAdd);
             //asssert
             Assert.IsTrue(wasAdded);
+        }
+
+        [TestMethod]
+        public void GetAllOutings_GeneralTest_AssertsListIsNotNull()
+        {
+            //arrange
+            Outing outingToAdd2 = new Outing(Outing.OutingType.Golf, 12, new DateTime(01 / 01 / 2021), 123.32m, 23423.65m);
+            _outingRepo.CreateOuting(outingToAdd2);
+            //act
+            List<Outing> allOutings = _outingRepo.GetAllOutings();
+
+            //assert
+            Assert.IsNotNull(allOutings);
+        }
+
+        [TestMethod]
+        public void CalculateCostOfAllOutings_GeneralTest_AssertsAreEqual()
+        {
+            //arrange
+            Outing outingToAdd3 = new Outing(Outing.OutingType.Bowling, 16, new DateTime(01 / 01 / 2021), 420.69m, 420.69m);
+            _outingRepo.CreateOuting(outingToAdd3);
+            //act
+            decimal costOfAllOutings = _outingRepo.CalculateCostOfAllOutings();
+            //assert
+            Assert.AreEqual(420.69m, costOfAllOutings);
         }
     }
 }

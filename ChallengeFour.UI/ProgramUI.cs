@@ -62,6 +62,8 @@ namespace ChallengeFour.UI
             Console.Clear();
             Console.WriteLine("Create an outing: \n");
 
+                //linq takeWhile()?
+                
             //collect the outing type
             Console.WriteLine("What is the outing type? \n" +
                 "1. Golf \n" +
@@ -75,7 +77,9 @@ namespace ChallengeFour.UI
                 Console.ReadKey();
                 return;
             }
-                
+            // Int32.TryParse(Console.ReadLine().TakeWhile
+            //do while loop?
+
             OutingType typeOfOuting = (OutingType)outingTypeInt;
             //collect number of people that attended the outing
             Console.WriteLine("How many folks attended the outing?");
