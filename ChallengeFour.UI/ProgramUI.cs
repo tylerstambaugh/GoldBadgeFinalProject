@@ -27,7 +27,7 @@ namespace ChallengeFour.UI
                 Console.Clear();
                 DisplayMenu();
                 int userSelection;
-                if((!Int32.TryParse(Console.ReadLine(), out userSelection)) || (userSelection != 1 && userSelection != 2 && userSelection != 3 && userSelection != 4))
+                if((!Int32.TryParse(Console.ReadLine(), out userSelection)) || (userSelection != 1 && userSelection != 2 && userSelection != 3 && userSelection != 4 && userSelection != 99))
                 {
                     Console.WriteLine("Please enter a valid number. Press any key to return.");
                     Console.ReadKey();
@@ -46,6 +46,9 @@ namespace ChallengeFour.UI
                             OutingReporting();
                                 break;
                         case 4:
+                            runApplication = false;
+                            break;
+                        case 99:
                             runApplication = false;
                             break;
                         default:
