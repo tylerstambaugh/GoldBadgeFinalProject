@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using ChallengeThree.Lib;
+using System.Reflection;
+
 
 namespace ChallengeThree.Tests
 {
@@ -59,6 +61,14 @@ namespace ChallengeThree.Tests
         [TestMethod]
         public void RemoveDoorFromBadge_GeneralTest_ReturnsTrue()
         {
+            //arrange
+            List<string> listOfDoors = new List<string>() { "e4", "r5", "t6" };
+            Badge testBadge2 = new Badge(2, listOfDoors);
+            _badgeRepo.CreateBadge(testBadge2);
+            //act
+            bool wasRemoved = _badgeRepo.RemoveDoorFromBadge(2, "r4");
+            //assert
+            Assert.IsTrue(wasRemoved);
 
         }
 
@@ -66,22 +76,43 @@ namespace ChallengeThree.Tests
         public void RemoveAllDoorsFromBadge_GeneralTest_ReturnsTrue()
         {
             //arrange
-
+            List<string> listOfDoors = new List<string>() { "e4", "r5", "t6" };
+            Badge testBadge3 = new Badge(3, listOfDoors);
+            _badgeRepo.CreateBadge(testBadge3);
             //act 
-
+            int countOfDoorsBeforeRemoving = _badgeRepo.GetCountOfDoorsOnBadge(3);
+            _badgeRepo.RemoveAllDoorsFromBadge(3);
+            int countOfDoorsAfterRemoving = _badgeRepo.GetCountOfDoorsOnBadge(3);
             //assert
+            Assert.AreEqual(3, countOfDoorsBeforeRemoving);
+            Assert.AreEqual(0, countOfDoorsAfterRemoving);
         }
 
         [TestMethod]
         public void BadgeExists_GeneralTest_ReturnsFalse()
         {
+            //arrange
+            List<string> listOfDoors = new List<string>() { "e4", "r5", "t6" };
+            Badge testBadge4 = new Badge(4, listOfDoors);
+            _badgeRepo.CreateBadge(testBadge4);
 
+            //act 
+            bool badgeExist = _badgeRepo.BadgeExists(4);
+
+            //assert
+            Assert.IsTrue(badgeExist);
         }
 
         [TestMethod]
         public void BadgeExists_GeneralTest_ReturnsTrue()
         {
+            //arrange
 
+            //act
+            bool badgeDoesNotExist = _badgeRepo.BadgeExists(-1);
+
+            //assert
+            Assert.IsFalse(badgeDoesNotExist);
         }
     }
 }

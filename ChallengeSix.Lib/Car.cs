@@ -31,8 +31,6 @@ namespace ChallengeSix.Lib
 
     }
 
-    public class Hybrid : GasVehicle, ElectricVehicle
-    {
-
-    }
+   //public class Hybrid : GasVehicle, ElectricVehicle
+    
 }

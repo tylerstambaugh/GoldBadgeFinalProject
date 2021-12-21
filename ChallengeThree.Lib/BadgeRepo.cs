@@ -100,5 +100,20 @@ namespace ChallengeThree.Lib
         {
             return _badgeRepo.Count;
         }
+
+        // helper method to return a single badge, I don't think it gets used. Thought it might be userful at one point but then learned a bit more about dictionaries. 
+        //public Badge getBadgeByNumber(int badgeNumber)
+        //{
+        //    Badge badgeToReturn = _badgeRepo.[badgeNumber];
+        //    return badgeToReturn;
+        //}
+
+        //helper method used for unit testing
+        public int GetCountOfDoorsOnBadge(int badgeNumber)
+        {
+            List<string> listOfDoors = _badgeRepo[badgeNumber];
+            int countOfDoors = listOfDoors.Count;
+            return countOfDoors;
+        }
     }
 }
