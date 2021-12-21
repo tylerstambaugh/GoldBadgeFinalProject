@@ -21,10 +21,10 @@
     <a name="challenge2"> ##**Claims Challenge**
 
 
-    <a name="challenge3">##**Badge Challenge*8</a>
+    <a name="challenge3">##**Badge Challenge*8
 
-    <a name="challenge4">##**Outing Challenge**</a>
+    <a name="challenge4">##**Outing Challenge**
 
-    <a name="challenge6">##** Autos Challenge**</a>
+    <a name="challenge6">##** Autos Challenge**
     I didn't make much progress on this other than the boiler plate repo pattern assemblies. I had the idea of using inheritance in the 'Car' class but quickly learned that I'd need to learn interfaces in order to do the mulitple inheritances I was thinking of. That's about when I stopped. 
 
