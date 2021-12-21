@@ -3,9 +3,9 @@
 ## Table Of Contents
 1.[Introduction](#intro)
 2.[Notes On Challenge Two](#challenge2)
-3.[Notes on Challange Three](challenge3)
-4.[Notes on Challenge Four](challenge4)
-5.[Notes on Challange Six](challenge6)
+3.[Notes on Challange Three](#challenge3)
+4.[Notes on Challenge Four](#challenge4)
+5.[Notes on Challange Six](#challenge6)
 
 ### Disclaimer. At the time of this writing all console applications"Work on my machine!"
 
@@ -24,4 +24,7 @@
     <a name="challneg3">##**Badge Challenge*8</a>
 
     <a name="challenge4">##**Outing Challenge**</a>
-    
+
+    <a name="challenge6">##** Autos Challenge**</a>
+    I didn't make much progress on this other than the boiler plate repo pattern assemblies. I had the idea of using inheritance in the 'Car' class but quickly learned that I'd need to learn interfaces in order to do the mulitple inheritances I was thinking of. That's about when I stopped. 
+
