@@ -1,4 +1,4 @@
-# Gold Badge Final Project
+# Gold Badge Final Project - Tyler Stambaugh
 
 ## Table Of Contents
 1.[Introduction](#intro)
@@ -7,7 +7,7 @@
 4.[Notes on Challenge Four](#challenge4)
 5.[Notes on Challange Six](#challenge6)
 
-### Disclaimer. At the time of this writing all console applications"Work on my machine!"
+### Disclaimer: At the time of this writing all console applications"Work on my machine!"
 
 <a name="intro">
     ##**Introduction**
