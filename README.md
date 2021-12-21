@@ -1,8 +1,8 @@
 # Gold Badge Final Project
 
 ## Table Of Contents
-[1. Introduction](#intro)
-[2. Notes On Challenge Two](#challenge2)
+1.[Introduction](#intro)
+2.[Notes On Challenge Two](#challenge2)
 3. Notes on Challange Three
 4. Notes on Challenge Four
 5. Notes on Challange Six
