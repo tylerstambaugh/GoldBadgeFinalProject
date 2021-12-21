@@ -10,7 +10,6 @@
 
 ### Disclaimer: At the time of this writing all console applications"Work on my machine!"
 
-<a name="intro">
     ##**Introduction**
     For this assignment, I selected challenges 2, 3, and 4. I started on challenge
     6 and wanted to try some inheritance but didn't have time to make much progress.
