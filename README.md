@@ -3,7 +3,7 @@
 ## Table Of Contents
 
 1.[Introduction](##intro)
-2.[Notes On Challenge Two](##challenge2)
+2.[Notes On Challenge Two](##Challenge2)
 3.[Notes on Challange Three](##challenge3)
 4.[Notes on Challenge Four](##challenge4)
 5.[Notes on Challange Six](##challenge6)
@@ -17,9 +17,9 @@
     Also, it wasn't until I was nearly compelte with challenges 2 and 3 that Jenna expressed an
     alternative format for structuring the projects, that is why only challenge 4 is in it's own folder.
 
-    <a name="challenge2">
+    ##Challenge2
         ##**Claims Challenge**
-        </a>    
+          
 
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
