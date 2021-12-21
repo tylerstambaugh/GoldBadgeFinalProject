@@ -2,10 +2,10 @@
 
 ## Table Of Contents
 1.[Introduction](#intro)
-2.[Notes On Challenge Two](#challenge2)
-3.[Notes on Challange Three](#challenge3)
-4.[Notes on Challenge Four](#challenge4)
-5.[Notes on Challange Six](#challenge6)
+2.[Notes On Challenge Two](/#challenge2)
+3.[Notes on Challange Three](/#challenge3)
+4.[Notes on Challenge Four](/#challenge4)
+5.[Notes on Challange Six](/#challenge6)
 
 ### Disclaimer: At the time of this writing all console applications"Work on my machine!"
 
@@ -18,10 +18,10 @@
 
 
 
-    <a name="challenge2"></a> ##**Claims Challenge**
+    <a name="challenge2"> ##**Claims Challenge**
 
 
-    <a name="challneg3">##**Badge Challenge*8</a>
+    <a name="challenge3">##**Badge Challenge*8</a>
 
     <a name="challenge4">##**Outing Challenge**</a>
 
