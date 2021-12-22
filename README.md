@@ -3,10 +3,10 @@
 ## Table Of Contents
 
 1. [Introduction](##intro)
-2. [Notes On Challenge Two](##Challenge2)
-3. [Notes on Challange Three](##Challenge3)
-4. [Notes on Challenge Four](##Challenge4)
-5. [Notes on Challange Six](##Challenge6)
+2. [Notes On Challenge Two](## Challenge2)
+3. [Notes on Challange Three](## Challenge3)
+4. [Notes on Challenge Four](## Challenge4)
+5. [Notes on Challange Six](## Challenge6)
 
 ### Disclaimer: At the time of this writing all console applications"Work on my machine!"
 
@@ -35,7 +35,7 @@ Working with the dicitonary collection on this one was a bit of a learning curve
 
 I didn't really want to do this challenge because of the type of objects it works with. While that may seem a little obsurd, it did strike the importance of not always being in charge of what the project may necessitate. If you don't want to write code that deals with insurance or whatever, don't work for a software shop that deals in isurance. The challenge itself seemed ok, I think I got better at handling user input for all the negative cases.
 
-##Challenge6  
+## Challenge6  
 
  **Autos Challenge**  
 
