@@ -25,19 +25,19 @@ I started with the second challenge since I was feeling comfortable with the rep
 
 ## Challenge3  
 
- ** Badge Challenge**  
+ **Badge Challenge**  
 
 Working with the dicitonary collection on this one was a bit of a learning curve. It seemed to click and make sense at sometime and other times seems like "I'm not sure why this works".  I think as we start to develop down to the DB that these concepts will become more concrete.
 
 ## Challenge4  
 
-** Outing Challenge **  
+**Outing Challenge**  
 
 I didn't really want to do this challenge because of the type of objects it works with. While that may seem a little obsurd, it did strike the importance of not always being in charge of what the project may necessitate. If you don't want to write code that deals with insurance or whatever, don't work for a software shop that deals in isurance. The challenge itself seemed ok, I think I got better at handling user input for all the negative cases.
 
-## Challenge6  
+##Challenge6  
 
- ** Autos Challenge **  
+ **Autos Challenge**  
 
  I didn't make much progress on this other than the boiler plate repo pattern assemblies. I had the idea of using inheritance in the 'Car' class but quickly learned that I'd need to learn interfaces in order to do the mulitple inheritances I was thinking of. That's about when I stopped. Then I found out that I never watched the video on interfaces and watched it. 
 
