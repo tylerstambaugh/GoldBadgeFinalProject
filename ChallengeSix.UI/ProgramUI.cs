@@ -86,7 +86,20 @@ namespace ChallengeSix.UI
             }
             if (vehicleType == 1)
             {
-                //AddGasVehicle();
+                Console.WriteLine("Please enter the engine displacement: xx.x");
+                if(!Double.TryParse(Console.ReadLine(), out double engineDisplacement))
+                {
+                    Console.WriteLine("Please enter a valid displacement xx.x. Press any key to return.");
+                    Console.ReadKey();
+                }
+                Console.WriteLine("Please enter how many miles per gallon of gasoline the vehicle travels:");
+                if (!Double.TryParse(Console.ReadLine(), out double vehicleMPG))
+                {
+                    Console.WriteLine("Please enter a valid displacement xx.x. Press any key to return.");
+                    Console.ReadKey();
+                }
+
+                GasVehicle gasVehicleToAdd = new GasVehicle((Car.VehicleType)vehicleType, vehicleMake, vehicleModel, vehicleYear, efficiencyRating, engineDisplacement, vehicleMPG);
             }
             else if (vehicleType == 2)
             {
