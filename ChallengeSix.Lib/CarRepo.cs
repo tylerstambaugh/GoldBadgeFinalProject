@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace ChallengeSix.Lib
 {
-    class CarRepo
+    public class CarRepo
     {
         //CRUD operations on local list of cars.
 
         //local list of cars to do business logic with
-        private readonly List<Car> _CarRepo = new List<Car>();
+       
+        
+        private readonly List<Car> _carRepo = new List<Car>();
+
 
         //creat (add) a car to the list
-        public bool AddCarToList(Car c)
+
+        public bool AddVehicleToList(Car c)
         {
             if (c != null)
             {
-                _CarRepo.Add(c);
+                _carRepo.Add(c);
                 return true;
             }
             else
@@ -28,30 +32,17 @@ namespace ChallengeSix.Lib
 
         }
 
+
         //update a car on the list
 
-        public bool UpdateCar(int carId)
-        {
-            foreach (Car c in _CarRepo)
-            {
-                if (c.Id == carId)
-                {
-                    //update the car details.
-                    return true;
 
-                }
-
-                else
-                {
-                    return false;
-                }
-                
-            }
-            return false;
-        }
 
         //read out cars from the list
 
+        public List<Car> GetAllCars()
+        {
+            return _carRepo;
+        }
         //delete cars from the list
 
         // helper methods

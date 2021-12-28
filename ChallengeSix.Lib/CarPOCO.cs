@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ChallengeSix.Lib
 {
-    public abstract class Car
+    public class Car
     {
+        public enum VehicleType {Gas, Electric, Hybrid};
         public int Id { get; set; }
-        protected string Make { get; set; }
+        public VehicleType TypeOfVehicle { get; set; }
+        public string Make { get; set; }
         protected string Model { get; set; }
         protected int Year { get; set; }
         protected double EfficiencyRating { get; set; }
@@ -32,7 +34,7 @@ namespace ChallengeSix.Lib
 
     }
 
-    public class Hybrid : GasVehicle 
+    public class HybridVehicle : GasVehicle 
     {
         protected string FuelCell { get; set; }
     }
