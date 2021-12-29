@@ -104,6 +104,7 @@ namespace ChallengeSix.UI
                 if (carRepo.AddVehicleToList(gasVehicleToAdd))
                 {
                     Console.WriteLine("Gas vehicle added successfully. Press any key to return.");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -129,18 +130,12 @@ namespace ChallengeSix.UI
             Console.Clear();
             Console.WriteLine("View Vehicle Sub-Routine VV1");
 
-            //Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", "Outing Type", "Number Of People", "Outing Date", "Cost Per Person", "Cost Of Event"));
-            //printLine();
-            //foreach (Outing outing in listOfOutings)
-            //{
-            //    Console.WriteLine(String.Format("|{0, -15}|{1, -18}|{2, -15}|{3, -18}|{4, -15}", $"{outing.TypeOfOuting}", $"{outing.HeadCount}", $"{outing.OutingDate.ToString(string.Format("MM/dd/yyyy"))}", $"${outing.CostPerPerson}", $"${outing.OutingTotalCost}"));
-            //}
             Console.WriteLine(String.Format("|{0, -15}|{1, -15}|{2, -15}|{3, -15}", "ID", "Type", "Make", "Model"));
             PrintLine();
             List<Car> vehicles = carRepo.GetAllCars();
             foreach(Car c in vehicles)
             {
-                Console.WriteLine(String.Format("|{0, -15}|{1, -15}|{2, -15}|{3, -15}", $"ID: {c.VehicleID}", $"Type: {c.GetType()}", $"Make {c.Make}",  $"Model: {c.Model}"));
+                Console.WriteLine(String.Format("|{0, -15}|{1, -15}|{2, -15}|{3, -15}", $"{c.VehicleID}", $"{c.GetType().Name}", $"{c.Make}",  $"{c.Model}"));
                     
             }
             Console.WriteLine("Press any key to return.");

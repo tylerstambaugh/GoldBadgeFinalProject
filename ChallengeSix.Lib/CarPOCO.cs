@@ -12,7 +12,7 @@ namespace ChallengeSix.Lib
     {
         public  int VehicleID;
         public enum VehicleType {Gas, Electric, Hybrid};
-        public int Id { get; set; }
+        private int Id { get; set; }
         public VehicleType TypeOfVehicle { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
@@ -75,5 +75,4 @@ namespace ChallengeSix.Lib
             FuelCell = fuelCell;
         }
     }
-
 }
