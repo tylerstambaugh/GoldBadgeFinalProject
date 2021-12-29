@@ -8,6 +8,7 @@ namespace ChallengeSix.Lib
 {
     public class Car
     {
+        public  int VehicleID;
         public enum VehicleType {Gas, Electric, Hybrid};
         public int Id { get; set; }
         public VehicleType TypeOfVehicle { get; set; }
@@ -21,22 +22,60 @@ namespace ChallengeSix.Lib
 
     public class GasVehicle : Car
     {
-        protected double engineDisplacement { get; set; }
+        protected double EngineDisplacement { get; set; }
         protected double MilesPerGallon { get; set; }
+
+        public GasVehicle(string make, string model, int year, double rating, double displacement, double mpg)
+        {
+            VehicleID++;
+            TypeOfVehicle = VehicleType.Gas;
+            Make = make;
+            Model = model;
+            Year = year;
+            EfficiencyRating = rating;
+            EngineDisplacement = displacement;
+            MilesPerGallon = mpg;
+        }
 
     }
 
     public class ElectricVehicle : Car
     {
-        protected double batterySize { get; set; }
+        protected double BatterySize { get; set; }
         protected TimeSpan ChargeTime { get; set; }
         protected int RangeInMiles { get; set; }
+
+        public ElectricVehicle(string make, string model, int year, double rating, double batSize, TimeSpan chargeTime, int range)
+        {
+            VehicleID++;
+            TypeOfVehicle = VehicleType.Electric;
+            Make = make;
+            Model = model;
+            Year = year;
+            EfficiencyRating = rating;
+            BatterySize = batSize;
+            ChargeTime = chargeTime;
+            RangeInMiles = range;
+        }
 
     }
 
     public class HybridVehicle : GasVehicle 
     {
         protected string FuelCell { get; set; }
+
+        public HybridVehicle(string make, string model, int year, double rating, double displacement, double mpg, string fuelCell) : base(make, model, year, rating, displacement, mpg)
+        {
+            VehicleID++;
+            TypeOfVehicle = VehicleType.Hybrid;
+            Make = make;
+            Model = model;
+            Year = year;
+            EfficiencyRating = rating;
+            EngineDisplacement = displacement;
+            MilesPerGallon = mpg;
+            FuelCell = fuelCell;
+        }
     }
 
 }
