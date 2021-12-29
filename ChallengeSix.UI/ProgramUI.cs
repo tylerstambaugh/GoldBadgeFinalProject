@@ -99,7 +99,12 @@ namespace ChallengeSix.UI
                     Console.ReadKey();
                 }
 
-                GasVehicle gasVehicleToAdd = new GasVehicle((Car.VehicleType)vehicleType, vehicleMake, vehicleModel, vehicleYear, efficiencyRating, engineDisplacement, vehicleMPG);
+                GasVehicle gasVehicleToAdd = new GasVehicle(vehicleMake, vehicleModel, vehicleYear, efficiencyRating, engineDisplacement, vehicleMPG);
+
+                if (carRepo.AddVehicleToList(gasVehicleToAdd))
+                {
+                    Console.WriteLine("Gas vehicle added successfully. Press any key to return.");
+                }
             }
             else if (vehicleType == 2)
             {
