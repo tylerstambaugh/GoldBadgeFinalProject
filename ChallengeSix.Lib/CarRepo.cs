@@ -8,14 +8,10 @@ namespace ChallengeSix.Lib
 {
     public class CarRepo
     {
-        //CRUD operations on local list of cars.
+        //CRUD operations on local list of cars (POCO objects).
 
         //local list of cars to do business logic with
-       
-        
         private readonly List<Car> _carRepo = new List<Car>();
-
-
         //creat (add) a car to the list
 
         public bool AddVehicleToList(Car c)

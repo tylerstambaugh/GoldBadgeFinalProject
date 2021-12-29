@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChallengeSix.Lib
 {
+
+    //POCO has class objects and constructors. 
     public class Car
     {
         public  int VehicleID;
@@ -13,11 +15,9 @@ namespace ChallengeSix.Lib
         public int Id { get; set; }
         public VehicleType TypeOfVehicle { get; set; }
         public string Make { get; set; }
-        protected string Model { get; set; }
-        protected int Year { get; set; }
-        protected double EfficiencyRating { get; set; }
-
-
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public double EfficiencyRating { get; set; }
     }
 
     public class GasVehicle : Car
@@ -36,7 +36,6 @@ namespace ChallengeSix.Lib
             EngineDisplacement = displacement;
             MilesPerGallon = mpg;
         }
-
     }
 
     public class ElectricVehicle : Car
@@ -57,7 +56,6 @@ namespace ChallengeSix.Lib
             ChargeTime = chargeTime;
             RangeInMiles = range;
         }
-
     }
 
     public class HybridVehicle : GasVehicle 
