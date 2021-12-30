@@ -4,7 +4,7 @@ using System;
 namespace ChallengeOne.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class MenuRepoTests
     {
         [TestMethod]
         public void TestMethod1()
