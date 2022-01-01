@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChallengeOne.Lib;
 
 namespace ChallengeOne.UI
 {
     class ProgramUI
     {
+        private readonly MenuRepo _menuRepo = new MenuRepo();
         
         public void Run()
         {
@@ -68,13 +70,57 @@ namespace ChallengeOne.UI
             }
 
             Console.WriteLine("Please enter the meal name:");
+            string mealName = Console.ReadLine();
+            Console.WriteLine("Please enter the meal description:");
+            string mealDescription = Console.ReadLine();
 
+            List<string> mealIngredients = new List<string>();
+            Console.WriteLine("Please enter the meal ingredients. Press '*' to move on.");
+            bool addingIngredients = true;
+            while (addingIngredients)
+            {
+                string ingredient = Console.ReadLine();
+                if (ingredient.ToString() == "*")
+                {
+                    addingIngredients = false;
+                }
+                else
+                {
+                    mealIngredients.Add(ingredient);
+                }
+            }
+
+            Console.WriteLine("Please enter the meal price:");
+            if(!Decimal.TryParse(Console.ReadLine(), out Decimal price))
+            {
+                Console.WriteLine("That is not a valid price. Press any ket to try again.");
+            }
+
+            MenuItem itemToAdd = new MenuItem(mealNumber, mealName, mealDescription, mealIngredients, price);
+            bool wasAdded = _menuRepo.addItemToMenu(itemToAdd);
+            if (wasAdded)
+            {
+                Console.WriteLine("Cool, I think that worked. Press any key to continue");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Uncool, the code needs fixed.");
+                Console.ReadKey();
+            }
         }
 
 
         private void ViewMenuItems()
         {
-            throw new NotImplementedException();
+            List<MenuItem> itemsToDisplay = _menuRepo.GetMenuItems();
+
+            foreach (MenuItem mi in itemsToDisplay)
+            {
+                Console.WriteLine($"{itemsToDisplay.Count}");
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+            }
         }
         private void DeleteMenuItem()
         {
