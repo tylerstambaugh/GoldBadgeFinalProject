@@ -113,14 +113,17 @@ namespace ChallengeOne.UI
 
         private void ViewMenuItems()
         {
-            List<MenuItem> itemsToDisplay = _menuRepo.GetMenuItems();
 
+            //Console.WriteLine(String.Format("|{0, -7}|{1, -10}|{2, -20}|{3, -10}|{4, -17}|{5, -17}|{6, -7}|", "ClaimID", "Type", "Description", "Amount", "Date of Incident", "Date Of Claim", "Is Valid"));
+            List<MenuItem> itemsToDisplay = _menuRepo.GetMenuItems();
+            Console.WriteLine(String.Format("|{0, -5}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", "Meal #", "Meal Name", "Description", "Ingredients", "Price"));
             foreach (MenuItem mi in itemsToDisplay)
             {
-                Console.WriteLine($"{itemsToDisplay.Count}");
-                Console.WriteLine("Press any key to continue.");
-                Console.ReadKey();
+                Console.WriteLine(String.Format("|{0, -5}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", $"{mi.MenuNumber}", $"{mi.MealName}", $"{mi.MealDescription}", "ingredients", $"{mi.MealPrice}"));
+                
             }
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
         }
         private void DeleteMenuItem()
         {
