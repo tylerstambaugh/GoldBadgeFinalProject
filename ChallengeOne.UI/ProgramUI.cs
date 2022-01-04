@@ -113,13 +113,11 @@ namespace ChallengeOne.UI
 
         private void ViewMenuItems()
         {
-
-            //Console.WriteLine(String.Format("|{0, -7}|{1, -10}|{2, -20}|{3, -10}|{4, -17}|{5, -17}|{6, -7}|", "ClaimID", "Type", "Description", "Amount", "Date of Incident", "Date Of Claim", "Is Valid"));
             List<MenuItem> itemsToDisplay = _menuRepo.GetMenuItems();
-            Console.WriteLine(String.Format("|{0, -5}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", "Meal #", "Meal Name", "Description", "Ingredients", "Price"));
+            Console.WriteLine(String.Format("|{0, -7}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", "Meal #", "Meal Name", "Description", "Ingredients", "Price"));
             foreach (MenuItem mi in itemsToDisplay)
             {
-                Console.WriteLine(String.Format("|{0, -5}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", $"{mi.MenuNumber}", $"{mi.MealName}", $"{mi.MealDescription}", "ingredients", $"{mi.MealPrice}"));
+                Console.WriteLine(String.Format("|{0, -7}|{1, -15}|{2, -20}|{3, -50}|{4, -5}|", $"{mi.MenuNumber}", $"{mi.MealName}", $"{mi.MealDescription}", $"{ingredientsAsString(mi)}", $"{mi.MealPrice}"));
                 
             }
             Console.WriteLine("Press any key to continue.");
@@ -146,6 +144,17 @@ namespace ChallengeOne.UI
                 "4. Update Menu Item \n" +
                 "5. Exit");
             
+        }
+
+        public string ingredientsAsString(MenuItem mi)
+        {
+            string ingredientsAsString = "";
+            for (int i = 0; i < mi.MealIngredients.Count - 1; i++)
+            {
+                ingredientsAsString += mi.MealIngredients + ", ";
+            }
+            ingredientsAsString += mi.MealIngredients[mi.MealIngredients.Count];
+                return ingredientsAsString;
         }
     }
 }
